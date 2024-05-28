@@ -3,6 +3,7 @@ import 'package:know_ai_app/ui/welcome/welcome_screen.dart';
 
 import 'constant.dart';
 
+
 void main() {
   runApp(const MyApp());
 }
@@ -44,3 +45,4 @@ class MyApp extends StatelessWidget {
     );
   }
 }
+
