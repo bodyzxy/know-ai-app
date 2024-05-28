@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:get/utils.dart';
 
 import 'package:know_ai_app/constant.dart';
 
@@ -18,9 +19,9 @@ class LoginForm extends StatelessWidget {
             textInputAction: TextInputAction.next,
             cursorColor: kPrimaryColor,
             onSaved: (email) {},
-            decoration: const InputDecoration(
-              hintText: "Your email",
-              prefixIcon: Padding(
+            decoration: InputDecoration(
+              hintText: 'email'.tr,
+              prefixIcon: const Padding(
                 padding: EdgeInsets.all(defaultPadding),
                 child: Icon(Icons.person),
               ),
@@ -32,9 +33,9 @@ class LoginForm extends StatelessWidget {
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: kPrimaryColor,
-              decoration: const InputDecoration(
-                hintText: "Your password",
-                prefixIcon: Padding(
+              decoration: InputDecoration(
+                hintText: 'password'.tr,
+                prefixIcon: const Padding(
                   padding: EdgeInsets.all(defaultPadding),
                   child: Icon(Icons.lock),
                 ),
@@ -45,8 +46,8 @@ class LoginForm extends StatelessWidget {
           ElevatedButton(
             onPressed: () {},
             child: Text(
-              "Login".toUpperCase(),
-            ),
+                // "Login".toUpperCase(),
+                'signInButton'.tr),
           ),
           const SizedBox(height: defaultPadding),
           AlreadyHaveAnAccountCheck(
@@ -65,5 +66,4 @@ class LoginForm extends StatelessWidget {
       ),
     );
   }
-  
 }

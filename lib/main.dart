@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:know_ai_app/manager/localization.dart';
 import 'package:know_ai_app/ui/welcome/welcome_screen.dart';
 
 import 'constant.dart';
-
 
 void main() {
   runApp(const MyApp());
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',
       theme: ThemeData(
@@ -41,8 +42,9 @@ class MyApp extends StatelessWidget {
               borderSide: BorderSide.none,
             ),
           )),
+      translations: Localization(),
+      locale: const Locale('zh'),
       home: const WelcomeScreen(),
     );
   }
 }
-

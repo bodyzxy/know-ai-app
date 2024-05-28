@@ -1,12 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:get/utils.dart';
 import 'package:know_ai_app/constant.dart';
 import 'package:know_ai_app/component/account_check.dart';
 import 'package:know_ai_app/ui/login/login_screen.dart';
 
 class RegisterForm extends StatelessWidget {
   const RegisterForm({super.key});
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -18,9 +17,9 @@ class RegisterForm extends StatelessWidget {
             textInputAction: TextInputAction.next,
             cursorColor: kPrimaryColor,
             onSaved: (email) {},
-            decoration: const InputDecoration(
-              hintText: "Your email",
-              prefixIcon: Padding(
+            decoration: InputDecoration(
+              hintText: 'email'.tr,
+              prefixIcon: const Padding(
                 padding: EdgeInsets.all(defaultPadding),
                 child: Icon(Icons.person),
               ),
@@ -32,9 +31,9 @@ class RegisterForm extends StatelessWidget {
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: kPrimaryColor,
-              decoration: const InputDecoration(
-                hintText: "Your password",
-                prefixIcon: Padding(
+              decoration: InputDecoration(
+                hintText: 'password'.tr,
+                prefixIcon: const Padding(
                   padding: EdgeInsets.all(defaultPadding),
                   child: Icon(Icons.lock),
                 ),
@@ -44,7 +43,7 @@ class RegisterForm extends StatelessWidget {
           const SizedBox(height: defaultPadding / 2),
           ElevatedButton(
             onPressed: () {},
-            child: Text("Sign Up".toUpperCase()),
+            child: Text('signUpButton'.tr),
           ),
           const SizedBox(height: defaultPadding),
           AlreadyHaveAnAccountCheck(
