@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
 import 'package:know_ai_app/manager/localization.dart';
-import 'package:know_ai_app/ui/home/home.dart';
 import 'package:know_ai_app/ui/user/user_details.dart';
-import 'package:know_ai_app/ui/welcome/welcome_screen.dart';
 
 import 'constant.dart';
 
