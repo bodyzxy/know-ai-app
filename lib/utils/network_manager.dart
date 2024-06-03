@@ -48,7 +48,7 @@ class NetworkManager {
           data: data, queryParameters: params, options: options);
       return BaseResponse<dynamic>(
         code: response.statusCode,
-        msg: response.statusMessage,
+        message: response.statusMessage,
         data: response.data,
       );
     } on DioException catch (e) {

@@ -1,9 +1,9 @@
 class StringResponse {
-  final String mes;
+  final String data;
 
-  StringResponse({required this.mes});
+  StringResponse({required this.data});
 
-  factory StringResponse.formJson(Map<String, dynamic> json) {
-    return StringResponse(mes: json['message']);
+  factory StringResponse.formJson(String json) {
+    return StringResponse(data: json);
   }
 }

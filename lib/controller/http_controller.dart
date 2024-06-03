@@ -8,7 +8,8 @@ import 'package:know_ai_app/utils/network_manager.dart';
 import 'package:know_ai_app/utils/token/token_storage.dart';
 
 class HttpController extends GetxController {
-  void loginRequest(Map<String, String> jsonData) async {
+  Future<Map<String, dynamic>> loginRequest(
+      Map<String, dynamic> jsonData) async {
     // 创建 NetworkManager 实例
     NetworkManager networkManager = NetworkManager();
     // 配置 Dio 实例
@@ -17,14 +18,19 @@ class HttpController extends GetxController {
         '/api/v1/account/login',
         method: HttpMethod.post,
         data: jsonData);
-    AuthenticationResponse authenticationResponse =
-        AuthenticationResponse.fromJson(response.data['data']);
-    //写入token
-    TokenStorage().storeToken(authenticationResponse.accessToken,
-        authenticationResponse.refreshToken);
+    if (response.data['data'] != null) {
+      AuthenticationResponse authenticationResponse =
+          AuthenticationResponse.fromJson(response.data['data']);
+      //写入token
+      TokenStorage().storeToken(authenticationResponse.accessToken,
+          authenticationResponse.refreshToken);
+      return response.data;
+    } else {
+      return response.data;
+    }
   }
 
-  void registerRequest(Map<String, dynamic> jsonData) async {
+  Future<String> registerRequest(Map<String, dynamic> jsonData) async {
     // 创建 NetworkManager 实例
     NetworkManager networkManager = NetworkManager();
     // 配置 Dio 实例
@@ -33,9 +39,8 @@ class HttpController extends GetxController {
         '/api/v1/account/register',
         method: HttpMethod.post,
         data: jsonData);
-    StringResponse stringResponse = StringResponse.formJson(response.data);
-    if (kDebugMode) {
-      print(stringResponse);
-    }
+    StringResponse stringResponse =
+        StringResponse.formJson(response.data['data']);
+    return stringResponse.data;
   }
 }

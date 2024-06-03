@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/utils.dart';
@@ -69,13 +70,22 @@ class _LoginFormState extends State<LoginForm> {
                   'email': _emailController.text,
                   'password': _passwordController.text
                 };
-                TokenStorage().deleteAllTokens();
-                HttpController().loginRequest(jsonData);
-                Future<String?> token = TokenStorage().getAccessToken();
-                token.then((String? value) {
-                  if (value != null) {
-                    Get.toNamed("/home");
+                Future<Map<String, dynamic>> data = HttpController()
+                    .loginRequest(jsonData.cast<String, dynamic>());
+                data.then((value) {
+                  if (value['code'] == 0) {
+                    Future<String?> token = TokenStorage().getAccessToken();
+                    token.then((String? value1) {
+                      if (value1 != null) {
+                        Get.toNamed("/home");
+                      } else {
+                        Get.toNamed("/login");
+                      }
+                    });
                   } else {
+                    Get.defaultDialog(
+                        title: 'login.error'.tr,
+                        content: Text(value['message']!));
                     Get.toNamed("/login");
                   }
                 });

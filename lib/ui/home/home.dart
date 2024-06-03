@@ -26,7 +26,7 @@ class _HomeState extends State<Home> {
           child: Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              barItem(curPage == 0, 0, icon: Icons.home_filled, text: "首页"),
+              barItem(curPage == 0, 0, icon: Icons.home_filled, text: "对话"),
               barItem(curPage == 1, 1, icon: Icons.access_alarm, text: "绘图"),
               const SizedBox(
                 width: 48,

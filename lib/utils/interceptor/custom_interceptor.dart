@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:know_ai_app/model/response/base_response.dart';
+import 'package:know_ai_app/utils/token/token_storage.dart';
 
 //日志拦截器
 class CustomInterceptor extends Interceptor {
@@ -14,7 +15,10 @@ class CustomInterceptor extends Interceptor {
     buffer.write('| - Url：   ${options.baseUrl + options.path}\n');
     buffer.write('| - Method：${options.method}\n');
     buffer.write('| - Header：${options.headers.toString()}\n');
-
+    TokenStorage().deleteAllTokens();
+    // options.headers['Authorization'] =
+    //     "Bearer ${TokenStorage().getAccessToken()}";
+    buffer.write('| - Token:     ${options.headers['Authorization']}\n');
     final data = options.data;
     if (data != null) {
       if (data is Map) {
@@ -39,7 +43,7 @@ class CustomInterceptor extends Interceptor {
     //自定义但会base
     final baseResponse = BaseResponse(
         code: response.statusCode,
-        msg: response.statusMessage,
+        message: response.statusMessage,
         data: response.data);
     // response.data = baseResponse.data;
 
@@ -55,7 +59,7 @@ class CustomInterceptor extends Interceptor {
     final data = response.data;
     if (data != null) {
       if (data is Map) {
-        buffer.write('| - Data:  ${response.data['data'].toString()}\n');
+        buffer.write('| - Data:  ${response.data.toString()}\n');
         String dataJson = jsonEncode(response.data);
         buffer.write('| - Json:  $dataJson\n');
       } else if (data is FormData) {

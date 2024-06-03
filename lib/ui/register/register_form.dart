@@ -5,7 +5,6 @@ import 'package:get/utils.dart';
 import 'package:know_ai_app/constant.dart';
 import 'package:know_ai_app/component/account_check.dart';
 import 'package:know_ai_app/controller/http_controller.dart';
-import 'package:know_ai_app/ui/login/login_screen.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});
@@ -83,7 +82,21 @@ class _RegisterFormState extends State<RegisterForm> {
                   'password': _passwordController.text,
                   'confirmPassword': _confirmPasswordController.text
                 };
-                HttpController().registerRequest(jsonData);
+                Future<String?> mes = HttpController()
+                    .registerRequest(jsonData.cast<String, dynamic>());
+                mes.then((String? value) {
+                  if (value != null && value == "账户注册成功，请前往邮箱进行激活") {
+                    Get.defaultDialog(
+                        title: 'activation.title'.tr,
+                        content: Text('activation.text'.tr));
+                    Get.toNamed("/login");
+                  } else {
+                    Get.defaultDialog(
+                        title: 'activation.title'.tr,
+                        content: Text('activation.ready'.tr));
+                    Get.toNamed("/login");
+                  }
+                });
                 Get.back();
               }
             },
