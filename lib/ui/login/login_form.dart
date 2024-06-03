@@ -1,20 +1,34 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/utils.dart';
 
 import 'package:know_ai_app/constant.dart';
 
 import 'package:know_ai_app/component/account_check.dart';
+import 'package:know_ai_app/controller/http_controller.dart';
 import 'package:know_ai_app/ui/register/register_screen.dart';
+import 'package:know_ai_app/utils/token/token_storage.dart';
 
-class LoginForm extends StatelessWidget {
+class LoginForm extends StatefulWidget {
   const LoginForm({super.key});
 
   @override
+  State<LoginForm> createState() => _LoginFormState();
+}
+
+class _LoginFormState extends State<LoginForm> {
+  @override
   Widget build(BuildContext context) {
+    final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+    final TextEditingController _emailController = TextEditingController();
+    final TextEditingController _passwordController = TextEditingController();
+
     return Form(
+      key: _formKey,
       child: Column(
         children: [
           TextFormField(
+            controller: _emailController,
             keyboardType: TextInputType.emailAddress,
             textInputAction: TextInputAction.next,
             cursorColor: kPrimaryColor,
@@ -30,6 +44,7 @@ class LoginForm extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.symmetric(vertical: defaultPadding),
             child: TextFormField(
+              controller: _passwordController,
               textInputAction: TextInputAction.done,
               obscureText: true,
               cursorColor: kPrimaryColor,
@@ -44,7 +59,28 @@ class LoginForm extends StatelessWidget {
           ),
           const SizedBox(height: defaultPadding),
           ElevatedButton(
-            onPressed: () {},
+            onPressed: () {
+              //验证表单
+              if (_formKey.currentState!.validate()) {
+                //提交表单
+                _formKey.currentState!.save();
+
+                final jsonData = {
+                  'email': _emailController.text,
+                  'password': _passwordController.text
+                };
+                TokenStorage().deleteAllTokens();
+                HttpController().loginRequest(jsonData);
+                Future<String?> token = TokenStorage().getAccessToken();
+                token.then((String? value) {
+                  if (value != null) {
+                    Get.toNamed("/home");
+                  } else {
+                    Get.toNamed("/login");
+                  }
+                });
+              }
+            },
             child: Text(
                 // "Login".toUpperCase(),
                 'signInButton'.tr),
@@ -52,14 +88,7 @@ class LoginForm extends StatelessWidget {
           const SizedBox(height: defaultPadding),
           AlreadyHaveAnAccountCheck(
             press: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) {
-                    return const RegisterScreen();
-                  },
-                ),
-              );
+              Get.toNamed("/register");
             },
           ),
         ],

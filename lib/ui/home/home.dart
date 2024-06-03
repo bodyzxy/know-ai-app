@@ -27,11 +27,11 @@ class _HomeState extends State<Home> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               barItem(curPage == 0, 0, icon: Icons.home_filled, text: "首页"),
-              barItem(curPage == 1, 1, icon: Icons.access_alarm, text: "社区"),
+              barItem(curPage == 1, 1, icon: Icons.access_alarm, text: "绘图"),
               const SizedBox(
                 width: 48,
               ),
-              barItem(curPage == 2, 2, icon: Icons.message_sharp, text: "消息"),
+              barItem(curPage == 2, 2, icon: Icons.message_sharp, text: "知识库"),
               barItem(curPage == 3, 3, icon: Icons.person, text: "我的"),
             ],
           ),
