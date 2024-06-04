@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -60,7 +62,11 @@ class _HomeState extends State<Home> {
           ),
         ],
       ),
-      onPressed: () {},
+      onPressed: () {
+        if (text == "我的") {
+          Get.toNamed("/user");
+        }
+      },
     );
   }
 }

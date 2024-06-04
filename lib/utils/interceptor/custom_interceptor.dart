@@ -15,7 +15,7 @@ class CustomInterceptor extends Interceptor {
     buffer.write('| - Url：   ${options.baseUrl + options.path}\n');
     buffer.write('| - Method：${options.method}\n');
     buffer.write('| - Header：${options.headers.toString()}\n');
-    TokenStorage().deleteAllTokens();
+    // TokenStorage().deleteAllTokens();
     // options.headers['Authorization'] =
     //     "Bearer ${TokenStorage().getAccessToken()}";
     buffer.write('| - Token:     ${options.headers['Authorization']}\n');

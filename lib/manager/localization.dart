@@ -16,7 +16,9 @@ class Localization extends Translations {
           'activation.text':
               'Account registration is successful, please go to your email to activate',
           'activation.ready': 'Email is registered',
-          'login.error': 'mistake'
+          'login.error': 'mistake',
+          'user.name': 'Full Name',
+          'name.error': 'Name is empty'
         },
         'zh': {
           'signUpButton': '注册',
@@ -30,7 +32,9 @@ class Localization extends Translations {
           'activation.title': '激活',
           'activation.text': '账户注册成功，请前往邮箱进行激活',
           'activation.ready': '邮箱已注册',
-          'login.error': '错误'
+          'login.error': '错误',
+          'user.name': '用户名',
+          'name.error': '姓名为空'
         }
       };
 }

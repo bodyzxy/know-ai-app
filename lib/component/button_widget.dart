@@ -18,6 +18,9 @@ class ButtonWidget extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 12),
         ),
         onPressed: onClicked,
-        child: Text(text),
+        child: Text(
+          text,
+          style: const TextStyle(fontSize: 20),
+        ),
       );
 }

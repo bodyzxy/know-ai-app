@@ -1,44 +1,76 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_core/src/get_main.dart';
+import 'package:get/get_navigation/get_navigation.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:know_ai_app/model/hive_box.dart';
+import 'package:know_ai_app/model/message.dart';
 
 class NumbersWidget extends StatelessWidget {
   const NumbersWidget({super.key});
 
   @override
-  Widget build(BuildContext context) => Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: <Widget>[
-          buildButton(context, '4.8', '排行'),
-          buildDivider(),
-          buildButton(context, '35', '关注'),
-          buildDivider(),
-          buildButton(context, '50', '粉丝'),
-        ],
-      );
-
-  Widget buildDivider() => Container(
-        height: 24,
-        child: const VerticalDivider(),
-      );
-
-  Widget buildButton(BuildContext context, String value, String text) =>
-      MaterialButton(
-        padding: const EdgeInsets.symmetric(vertical: 4),
-        onPressed: () {},
-        materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: <Widget>[
-            Text(
-              value,
-              style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 24),
+  Widget build(BuildContext context) {
+    return ValueListenableBuilder(
+      valueListenable: Hive.box<HistoryMessage>(historyBox).listenable(),
+      builder: (context, Box<HistoryMessage> box, _) {
+        if (box.values.isEmpty) {
+          return const Center(
+            child: Text(
+              "无数据",
+              style: TextStyle(color: Colors.black, fontSize: 20.0),
             ),
-            const SizedBox(height: 2),
-            Text(
-              text,
-              style: const TextStyle(fontWeight: FontWeight.bold),
-            ),
-          ],
-        ),
-      );
+          );
+        }
+        return ListView.builder(
+          itemCount: box.values.length,
+          itemBuilder: (context, index) {
+            HistoryMessage? currentContext = box.getAt(index);
+            return Card(
+              clipBehavior: Clip.antiAlias,
+              child: InkWell(
+                onLongPress: () {
+                  showDialog(
+                      context: context,
+                      barrierDismissible: true,
+                      builder: (BuildContext context) {
+                        return AlertDialog(
+                          content: Text("你确定要删除 ${currentContext!.title}吗?"),
+                          actions: <Widget>[
+                            TextButton(
+                              child: const Text("No"),
+                              onPressed: () => Get.back(),
+                            ),
+                            TextButton(
+                              child: const Text("Yes"),
+                              onPressed: () async {
+                                await box.deleteAt(index);
+                                Get.back();
+                              },
+                            )
+                          ],
+                        );
+                      });
+                },
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: <Widget>[
+                      const SizedBox(height: 5),
+                      Text(currentContext!.createTime.toString()),
+                      const SizedBox(height: 5),
+                      Text(currentContext!.title.length > 20
+                          ? '${currentContext.title.substring(0, 20)}....'
+                          : currentContext.title),
+                      const SizedBox(height: 5),
+                    ],
+                  ),
+                ),
+              ),
+            );
+          },
+        );
+      },
+    );
+  }
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/utils.dart';
@@ -6,8 +5,7 @@ import 'package:get/utils.dart';
 import 'package:know_ai_app/constant.dart';
 
 import 'package:know_ai_app/component/account_check.dart';
-import 'package:know_ai_app/controller/http_controller.dart';
-import 'package:know_ai_app/ui/register/register_screen.dart';
+import 'package:know_ai_app/api/http_controller.dart';
 import 'package:know_ai_app/utils/token/token_storage.dart';
 
 class LoginForm extends StatefulWidget {
