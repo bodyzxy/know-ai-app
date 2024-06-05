@@ -7,7 +7,7 @@ class NetworkManager {
   // 移除单例模式，直接创建实例
   NetworkManager();
 
-  final _mBaseUrl = "http://xxxxxxxxxxxxx";
+  final _mBaseUrl = "http://45.32.33.60:8818";
   late Dio _dio;
 
   // 初始化方法，用于配置 Dio 实例

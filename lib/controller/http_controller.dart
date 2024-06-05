@@ -1,4 +1,3 @@
-import 'package:flutter/foundation.dart';
 import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:know_ai_app/model/response/authentication_response.dart';
 import 'package:know_ai_app/model/response/base_response.dart';

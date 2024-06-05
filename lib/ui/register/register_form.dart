@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:know_ai_app/constant.dart';
 import 'package:know_ai_app/component/account_check.dart';
-import 'package:know_ai_app/api/http_controller.dart';
+import 'package:know_ai_app/controller/http_controller.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});

@@ -5,14 +5,16 @@ class TextFieldWidget extends StatefulWidget {
   final String label;
   final String text;
   final ValueChanged<String> onChanged;
+  final bool enabled;
 
-  const TextFieldWidget({
-    Key? key,
-    this.maxLines = 1,
-    required this.label,
-    required this.text,
-    required this.onChanged,
-  }) : super(key: key);
+  const TextFieldWidget(
+      {Key? key,
+      this.maxLines = 1,
+      required this.label,
+      required this.text,
+      required this.onChanged,
+      this.enabled = false})
+      : super(key: key);
 
   @override
   _TextFieldWidgetState createState() => _TextFieldWidgetState();

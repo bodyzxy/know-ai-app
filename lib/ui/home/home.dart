@@ -1,6 +1,8 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
+import 'package:know_ai_app/utils/token/token_storage.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -63,6 +65,12 @@ class _HomeState extends State<Home> {
         ],
       ),
       onPressed: () {
+        // await TokenStorage().deleteAllTokens();
+        // final accessToken = await TokenStorage().getAccessToken();
+        // if (kDebugMode) {
+        //   print("-=-=-=-=-=-=-=-= ${accessToken}");
+        // }
+        // await Get.offAllNamed("/");
         if (text == "我的") {
           Get.toNamed("/user");
         }
