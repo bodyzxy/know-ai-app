@@ -5,8 +5,6 @@ import 'package:know_ai_app/manager/localization.dart';
 import 'package:know_ai_app/model/hive_box.dart';
 import 'package:know_ai_app/model/message.dart';
 import 'package:know_ai_app/model/response/message.g.dart';
-import 'package:know_ai_app/ui/user/user_details.dart';
-import 'package:know_ai_app/ui/user/user_setting.dart';
 import 'package:know_ai_app/utils/router/router.dart';
 
 import 'constant.dart';
@@ -58,7 +56,6 @@ class MyApp extends StatelessWidget {
       locale: const Locale('zh'),
       initialRoute: "/",
       getPages: Routers.routes,
-      // home: const UserSetting(),
     );
   }
 }

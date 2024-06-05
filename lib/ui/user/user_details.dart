@@ -7,7 +7,6 @@ import 'package:know_ai_app/component/numbers_widget.dart';
 import 'package:know_ai_app/component/profile_widget.dart';
 import 'package:know_ai_app/controller/user/user_controller.dart';
 import 'package:know_ai_app/model/user.dart';
-import 'package:know_ai_app/model/preference/user_preferences.dart';
 
 class UserDetails extends StatefulWidget {
   const UserDetails({super.key});
