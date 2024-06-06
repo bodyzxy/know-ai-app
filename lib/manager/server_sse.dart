@@ -1,9 +1,9 @@
 import 'package:flutter_client_sse/constants/sse_request_type_enum.dart';
 import 'package:flutter_client_sse/flutter_client_sse.dart';
-import 'package:know_ai_app/controller/chat_controller.dart';
+import 'package:know_ai_app/handler/tpyedef.dart';
 import 'package:know_ai_app/storage/token_storage.dart';
 
-void ServerSSE(String context) async {
+void ServerSSE(String context, Recall recall) async {
   String? accessToken = await TokenStorage().getAccessToken();
 
   late Future<Map<String, dynamic>> output;
@@ -26,6 +26,6 @@ void ServerSSE(String context) async {
         },
         "prompt": context
       }).listen((event) {
-    ChatController().recall(event as String);
+    recall(event);
   });
 }
