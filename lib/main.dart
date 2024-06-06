@@ -6,6 +6,7 @@ import 'package:know_ai_app/model/hive_box.dart';
 import 'package:know_ai_app/model/message.dart';
 import 'package:know_ai_app/model/response/message.g.dart';
 import 'package:know_ai_app/config/router/router.dart';
+import 'package:know_ai_app/ui/draw/draw.dart';
 
 import 'constant/constant.dart';
 
@@ -55,7 +56,8 @@ class MyApp extends StatelessWidget {
       translations: Localization(),
       locale: const Locale('zh'),
       initialRoute: "/",
-      getPages: Routers.routes,
+      // getPages: Routers.routes,
+      home: const DrawPage(),
     );
   }
 }

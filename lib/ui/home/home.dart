@@ -54,11 +54,6 @@ class _HomeState extends State<Home> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xff937DFF),
-        onPressed: () {},
-        child: const Icon(Icons.add),
-      ),
       body: _bottomNavigationBarPage[_currIndex],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
       bottomNavigationBar: BottomNavigationBar(
