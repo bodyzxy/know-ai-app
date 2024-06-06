@@ -11,7 +11,7 @@ class Routers {
     GetPage(name: "/", page: () => const WelcomeScreen()),
     GetPage(name: "/login", page: () => const LoginScreen()),
     GetPage(name: "/register", page: () => const RegisterScreen()),
-    GetPage(name: "/home", page: () => const Home()),
+    GetPage(name: "/home", page: () => Home()),
     GetPage(name: "/user", page: () => const UserDetails()),
     GetPage(name: "/setting", page: () => const UserSetting())
   ];

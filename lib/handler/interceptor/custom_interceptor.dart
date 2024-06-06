@@ -3,7 +3,7 @@ import 'dart:convert';
 import 'package:dio/dio.dart';
 import 'package:flutter/foundation.dart';
 import 'package:know_ai_app/model/response/base_response.dart';
-import 'package:know_ai_app/utils/token/token_storage.dart';
+import 'package:know_ai_app/storage/token_storage.dart';
 
 //日志拦截器
 class CustomInterceptor extends Interceptor {

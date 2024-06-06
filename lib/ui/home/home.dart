@@ -1,8 +1,8 @@
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:know_ai_app/utils/token/token_storage.dart';
+import 'package:know_ai_app/ui/chat/chat.dart';
+import 'package:know_ai_app/ui/draw/draw.dart';
+import 'package:know_ai_app/ui/knowhub/knowhub.dart';
+import 'package:know_ai_app/ui/user/user_details.dart';
 
 class Home extends StatefulWidget {
   const Home({super.key});
@@ -12,7 +12,46 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
-  int curPage = 0;
+  final _bottomNavigationBarItems = [
+    const BottomNavigationBarItem(
+        icon: Icon(
+          Icons.chat_bubble_outline,
+          size: 30,
+        ),
+        backgroundColor: Colors.blueAccent,
+        label: "对话"),
+    const BottomNavigationBarItem(
+        icon: Icon(
+          Icons.draw,
+          size: 30,
+        ),
+        backgroundColor: Colors.blueAccent,
+        label: "听故事"),
+    const BottomNavigationBarItem(
+        icon: Icon(
+          Icons.file_open_rounded,
+          size: 30,
+        ),
+        backgroundColor: Colors.blueAccent,
+        label: "知识库"),
+    const BottomNavigationBarItem(
+        icon: Icon(
+          Icons.person,
+          size: 30,
+        ),
+        backgroundColor: Colors.blueAccent,
+        label: "我的")
+  ];
+
+  final List<Widget> _bottomNavigationBarPage = [
+    const ChatPage(),
+    const DrawPage(),
+    const KnowHubPage(),
+    const UserDetails()
+  ];
+
+  int _currIndex = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,60 +60,25 @@ class _HomeState extends State<Home> {
         onPressed: () {},
         child: const Icon(Icons.add),
       ),
-      resizeToAvoidBottomInset: true,
+      body: _bottomNavigationBarPage[_currIndex],
       floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      bottomNavigationBar: BottomAppBar(
-        shape: const CircularNotchedRectangle(),
-        child: Padding(
-          padding: const EdgeInsets.only(top: 8),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              barItem(curPage == 0, 0, icon: Icons.home_filled, text: "对话"),
-              barItem(curPage == 1, 1, icon: Icons.access_alarm, text: "绘图"),
-              const SizedBox(
-                width: 48,
-              ),
-              barItem(curPage == 2, 2, icon: Icons.message_sharp, text: "知识库"),
-              barItem(curPage == 3, 3, icon: Icons.person, text: "我的"),
-            ],
-          ),
-        ),
+      bottomNavigationBar: BottomNavigationBar(
+        showSelectedLabels: true,
+        items: _bottomNavigationBarItems,
+        currentIndex: _currIndex,
+        onTap: onTapChanged,
+        backgroundColor: Colors.blueAccent,
+        fixedColor: Colors.blueAccent,
+        unselectedLabelStyle: TextStyle(color: Colors.black),
+        selectedLabelStyle: TextStyle(color: Colors.black),
+        showUnselectedLabels: true,
       ),
     );
   }
 
-  IconButton barItem(
-    bool active,
-    int initPage, {
-    required IconData icon,
-    required String text,
-  }) {
-    return IconButton(
-      padding: const EdgeInsets.all(0),
-      color: active ? const Color(0xff937DFF) : const Color(0xff949494),
-      icon: Column(
-        children: [
-          Icon(icon),
-          Text(
-            text,
-            style: TextStyle(
-              color: active ? const Color(0xff937DFF) : const Color(0xff949494),
-            ),
-          ),
-        ],
-      ),
-      onPressed: () {
-        // await TokenStorage().deleteAllTokens();
-        // final accessToken = await TokenStorage().getAccessToken();
-        // if (kDebugMode) {
-        //   print("-=-=-=-=-=-=-=-= ${accessToken}");
-        // }
-        // await Get.offAllNamed("/");
-        if (text == "我的") {
-          Get.toNamed("/user");
-        }
-      },
-    );
+  void onTapChanged(int value) {
+    setState(() {
+      _currIndex = value;
+    });
   }
 }

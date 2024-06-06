@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:know_ai_app/constant.dart';
+import 'package:know_ai_app/constant/constant.dart';
 import 'package:know_ai_app/component/account_check.dart';
 import 'package:know_ai_app/controller/http_controller.dart';
 

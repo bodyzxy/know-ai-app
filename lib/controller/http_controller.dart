@@ -2,9 +2,9 @@ import 'package:get/get_state_manager/get_state_manager.dart';
 import 'package:know_ai_app/model/response/authentication_response.dart';
 import 'package:know_ai_app/model/response/base_response.dart';
 import 'package:know_ai_app/model/response/string_response.dart';
-import 'package:know_ai_app/utils/method/http_method.dart';
-import 'package:know_ai_app/utils/network_manager.dart';
-import 'package:know_ai_app/utils/token/token_storage.dart';
+import 'package:know_ai_app/constant/http_method.dart';
+import 'package:know_ai_app/manager/network_manager.dart';
+import 'package:know_ai_app/storage/token_storage.dart';
 
 class HttpController extends GetxController {
   Future<Map<String, dynamic>> loginRequest(

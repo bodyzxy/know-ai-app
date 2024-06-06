@@ -5,9 +5,9 @@ import 'package:know_ai_app/manager/localization.dart';
 import 'package:know_ai_app/model/hive_box.dart';
 import 'package:know_ai_app/model/message.dart';
 import 'package:know_ai_app/model/response/message.g.dart';
-import 'package:know_ai_app/utils/router/router.dart';
+import 'package:know_ai_app/config/router/router.dart';
 
-import 'constant.dart';
+import 'constant/constant.dart';
 
 void main() async {
   await Hive.initFlutter();

@@ -1,6 +1,6 @@
+import 'package:know_ai_app/constant/http_method.dart';
+import 'package:know_ai_app/manager/network_manager.dart';
 import 'package:know_ai_app/model/response/base_response.dart';
-import 'package:know_ai_app/utils/method/http_method.dart';
-import 'package:know_ai_app/utils/network_manager.dart';
 
 class UserInformation {
   Future<Map<String, dynamic>> userInformation() async {

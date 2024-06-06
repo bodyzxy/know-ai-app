@@ -9,7 +9,7 @@ import 'package:know_ai_app/component/profile_widget.dart';
 import 'package:know_ai_app/component/textfile.dart';
 import 'package:know_ai_app/controller/user/user_controller.dart';
 import 'package:know_ai_app/model/user.dart';
-import 'package:know_ai_app/utils/token/token_storage.dart';
+import 'package:know_ai_app/storage/token_storage.dart';
 
 class UserSetting extends StatefulWidget {
   const UserSetting({super.key});

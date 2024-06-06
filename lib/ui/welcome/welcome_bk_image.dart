@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/utils.dart';
 
-import 'package:know_ai_app/constant.dart';
+import 'package:know_ai_app/constant/constant.dart';
 import 'package:know_ai_app/manager/asset_manager.dart';
 
 class WelcomeImage extends StatelessWidget {

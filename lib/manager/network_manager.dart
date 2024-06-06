@@ -1,13 +1,13 @@
 import 'package:dio/dio.dart';
 import 'package:know_ai_app/model/response/base_response.dart';
-import 'package:know_ai_app/utils/interceptor/custom_interceptor.dart';
-import 'package:know_ai_app/utils/method/http_method.dart';
+import 'package:know_ai_app/handler/interceptor/custom_interceptor.dart';
+import 'package:know_ai_app/constant/http_method.dart';
 
 class NetworkManager {
   // 移除单例模式，直接创建实例
   NetworkManager();
 
-  final _mBaseUrl = "http://xxxxxxxxxxxxx";
+  final _mBaseUrl = "http://45.32.33.60:8818";
   late Dio _dio;
 
   // 初始化方法，用于配置 Dio 实例

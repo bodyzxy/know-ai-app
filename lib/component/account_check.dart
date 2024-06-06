@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/utils.dart';
-import 'package:know_ai_app/constant.dart';
+import 'package:know_ai_app/constant/constant.dart';
 
 class AlreadyHaveAnAccountCheck extends StatelessWidget {
   final bool login;
