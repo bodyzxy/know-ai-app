@@ -18,7 +18,9 @@ class Localization extends Translations {
           'activation.ready': 'Email is registered',
           'login.error': 'mistake',
           'user.name': 'Full Name',
-          'name.error': 'Name is empty'
+          'name.error': 'Name is empty',
+          'draw': 'draw',
+          'input': 'input'
         },
         'zh': {
           'signUpButton': '注册',
@@ -34,7 +36,9 @@ class Localization extends Translations {
           'activation.ready': '邮箱已注册',
           'login.error': '错误',
           'user.name': '用户名',
-          'name.error': '姓名为空'
+          'name.error': '姓名为空',
+          'draw': '绘画',
+          'input': '输入'
         }
       };
 }

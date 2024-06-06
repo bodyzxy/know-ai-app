@@ -87,12 +87,12 @@ class _RegisterFormState extends State<RegisterForm> {
                     Get.defaultDialog(
                         title: 'activation.title'.tr,
                         content: Text('activation.text'.tr));
-                    Get.toNamed("/login");
+                    Get.offAllNamed("/login");
                   } else {
                     Get.defaultDialog(
                         title: 'activation.title'.tr,
                         content: Text('activation.ready'.tr));
-                    Get.toNamed("/login");
+                    Get.offAllNamed("/login");
                   }
                 });
                 Get.back();
@@ -104,7 +104,7 @@ class _RegisterFormState extends State<RegisterForm> {
           AlreadyHaveAnAccountCheck(
             login: false,
             press: () {
-              Get.toNamed("/login");
+              Get.offAllNamed("/login");
             },
           ),
         ],

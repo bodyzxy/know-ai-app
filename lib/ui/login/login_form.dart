@@ -75,16 +75,16 @@ class _LoginFormState extends State<LoginForm> {
                     Future<String?> token = TokenStorage().getAccessToken();
                     token.then((String? value1) {
                       if (value1 != null) {
-                        Get.toNamed("/home");
+                        Get.offAllNamed("/home");
                       } else {
-                        Get.toNamed("/login");
+                        Get.offAllNamed("/login");
                       }
                     });
                   } else {
                     Get.defaultDialog(
                         title: 'login.error'.tr,
                         content: Text(value['message']!));
-                    Get.toNamed("/login");
+                    Get.offAllNamed("/login");
                   }
                 });
               }

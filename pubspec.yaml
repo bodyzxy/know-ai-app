@@ -40,6 +40,9 @@ dependencies:
   hive: ^2.2.3
   dart_openai: ^5.1.0
   hive_flutter: ^1.1.0
+  adaptive_theme: ^3.6.0
+  http: ^1.2.1
+  flutter_client_sse: ^2.0.1
 
 
   # The following adds the Cupertino Icons font to your application.
