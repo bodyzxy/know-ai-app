@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/utils.dart';
 
-import 'package:know_ai_app/constant.dart';
-
-import 'package:know_ai_app/ui/login/login_screen.dart';
-import 'package:know_ai_app/ui/register/register_screen.dart';
+import 'package:know_ai_app/constant/constant.dart';
 
 class LoginAndSignupBtn extends StatelessWidget {
   const LoginAndSignupBtn({super.key});
@@ -15,14 +13,7 @@ class LoginAndSignupBtn extends StatelessWidget {
       children: [
         ElevatedButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return const LoginScreen();
-                },
-              ),
-            );
+            Get.toNamed("/login");
           },
           child: Text(
               // "Login".toUpperCase(),
@@ -31,14 +22,7 @@ class LoginAndSignupBtn extends StatelessWidget {
         const SizedBox(height: 16),
         ElevatedButton(
           onPressed: () {
-            Navigator.push(
-              context,
-              MaterialPageRoute(
-                builder: (context) {
-                  return const RegisterScreen();
-                },
-              ),
-            );
+            Get.toNamed("/register");
           },
           style: ElevatedButton.styleFrom(
             backgroundColor: kPrimaryLightColor,

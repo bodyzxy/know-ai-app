@@ -1,11 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/src/root/get_material_app.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:know_ai_app/manager/localization.dart';
-import 'package:know_ai_app/ui/welcome/welcome_screen.dart';
+import 'package:know_ai_app/model/hive_box.dart';
+import 'package:know_ai_app/model/message.dart';
+import 'package:know_ai_app/model/response/message.g.dart';
+import 'package:know_ai_app/config/router/router.dart';
 
-import 'constant.dart';
+import 'constant/constant.dart';
 
-void main() {
+void main() async {
+  await Hive.initFlutter();
+  Hive.registerAdapter<Message>(MessageAdapter());
+  Hive.registerAdapter<HistoryMessage>(HistoryMessageAdapter());
+  await Hive.openBox<HistoryMessage>(historyBox);
+  await Hive.openBox<Message>(settingBox);
+
   runApp(const MyApp());
 }
 
@@ -44,7 +54,9 @@ class MyApp extends StatelessWidget {
           )),
       translations: Localization(),
       locale: const Locale('zh'),
-      home: const WelcomeScreen(),
+      initialRoute: "/",
+      getPages: Routers.routes,
+      // home: const UserSetting(),
     );
   }
 }
