@@ -10,7 +10,8 @@ class AssetManager{
   static const String CHAT_ICONS = "$ICONS_BASE_PATH/chat.svg";
   static const String LOGIN_ICONS = "$ICONS_BASE_PATH/login.svg";
   static const String SIGNUP_ICONS = "$ICONS_BASE_PATH/signup.svg";
-
+  static const String userIcon = "$ICONS_BASE_PATH/user.svg";
+  static const String robotIcon = "$ICONS_BASE_PATH/robot.svg";
 
 
 }

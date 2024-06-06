@@ -1,5 +1,6 @@
 import 'package:dart_openai/dart_openai.dart';
 import 'package:hive/hive.dart';
+import 'package:know_ai_app/model/dto/chat.dart';
 
 // part 'message.g.dart';
 // 会话信息
@@ -10,7 +11,7 @@ class Message {
   String content;
   // 角色
   @HiveField(1)
-  OpenAIChatMessageRole role;
+  String role;
   // historyMessageID
   @HiveField(2)
   String historyId;

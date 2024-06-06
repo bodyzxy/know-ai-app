@@ -33,7 +33,7 @@ class MessageAdapter extends TypeAdapter<Message> {
     }
     return Message(
       content: fields[0] as String,
-      role: role,
+      role: role.name.toLowerCase(),
       historyId: fields[2] as String,
     );
   }
@@ -45,7 +45,7 @@ class MessageAdapter extends TypeAdapter<Message> {
       ..writeByte(0)
       ..write(obj.content)
       ..writeByte(1)
-      ..write(obj.role.name)
+      ..write(obj.role)
       ..writeByte(2)
       ..write(obj.historyId);
   }
