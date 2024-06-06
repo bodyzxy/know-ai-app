@@ -5,8 +5,8 @@ import 'package:know_ai_app/component/build_app_bar.dart';
 import 'package:know_ai_app/component/button_widget.dart';
 import 'package:know_ai_app/component/numbers_widget.dart';
 import 'package:know_ai_app/component/profile_widget.dart';
+import 'package:know_ai_app/controller/user/user_controller.dart';
 import 'package:know_ai_app/model/user.dart';
-import 'package:know_ai_app/model/preference/user_preferences.dart';
 
 class UserDetails extends StatefulWidget {
   const UserDetails({super.key});
@@ -16,16 +16,17 @@ class UserDetails extends StatefulWidget {
 }
 
 class _UserDetailsState extends State<UserDetails> {
+  User user = UserController().getUserInformation();
   @override
   Widget build(BuildContext context) {
-    final user = UserPreferences.myUser;
     return Scaffold(
       appBar: buildAppBar(context),
       body: ListView(
         physics: const BouncingScrollPhysics(),
         children: [
           ProfileWidget(
-            imagePath: user.imagePath,
+            imagePath:
+                'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80',
             onClicked: () async {
               Get.toNamed("/setting");
             },

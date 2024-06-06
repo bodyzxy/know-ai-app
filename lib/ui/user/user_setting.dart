@@ -8,6 +8,8 @@ import 'package:know_ai_app/component/button_widget.dart';
 import 'package:know_ai_app/component/profile_widget.dart';
 import 'package:know_ai_app/component/textfile.dart';
 import 'package:know_ai_app/model/preference/user_preferences.dart';
+import 'package:know_ai_app/controller/user/user_controller.dart';
+import 'package:know_ai_app/model/user.dart';
 import 'package:know_ai_app/storage/token_storage.dart';
 
 class UserSetting extends StatefulWidget {
@@ -18,7 +20,7 @@ class UserSetting extends StatefulWidget {
 }
 
 class _UserSettingState extends State<UserSetting> {
-  final user = UserPreferences.myUser;
+  User user = UserController().getUserInformation();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,23 +30,22 @@ class _UserSettingState extends State<UserSetting> {
         physics: const BouncingScrollPhysics(),
         children: [
           ProfileWidget(
-            imagePath: user.imagePath,
+            imagePath:
+                'https://images.unsplash.com/photo-1554151228-14d9def656e4?ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&ixlib=rb-1.2.1&auto=format&fit=crop&w=333&q=80',
             onClicked: () async {},
           ),
           const SizedBox(height: 24),
           TextFieldWidget(
             label: 'user.name'.tr,
             text: user.name,
-            onChanged: (name) {
-              setState(() {
-                // user.name = name;
-              });
-            },
+            enabled: false,
+            onChanged: (name) {},
           ),
           const SizedBox(height: 24),
           TextFieldWidget(
             label: 'email'.tr,
             text: user.email,
+            enabled: false,
             onChanged: (email) {
               setState(() {
                 // user.email = email;

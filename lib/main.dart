@@ -56,7 +56,6 @@ class MyApp extends StatelessWidget {
       locale: const Locale('zh'),
       initialRoute: "/",
       getPages: Routers.routes,
-      // home: const UserSetting(),
     );
   }
 }

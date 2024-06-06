@@ -5,7 +5,7 @@ import 'package:get/utils.dart';
 import 'package:know_ai_app/constant/constant.dart';
 
 import 'package:know_ai_app/component/account_check.dart';
-import 'package:know_ai_app/api/http_controller.dart';
+import 'package:know_ai_app/controller/http_controller.dart';
 import 'package:know_ai_app/storage/token_storage.dart';
 
 class LoginForm extends StatefulWidget {

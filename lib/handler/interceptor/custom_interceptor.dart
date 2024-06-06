@@ -8,16 +8,21 @@ import 'package:know_ai_app/storage/token_storage.dart';
 //日志拦截器
 class CustomInterceptor extends Interceptor {
   @override
-  void onRequest(RequestOptions options, RequestInterceptorHandler handler) {
+  Future<void> onRequest(
+      RequestOptions options, RequestInterceptorHandler handler) async {
     StringBuffer buffer = StringBuffer();
     buffer.write('⌈‾‾ Request ヾ(•ω•`)o \n');
     buffer.write('| \n');
-    buffer.write('| - Url：   ${options.baseUrl + options.path}\n');
+    buffer.write('| - Url：   ${options.baseUrl} +==== ${options.path}\n');
     buffer.write('| - Method：${options.method}\n');
     buffer.write('| - Header：${options.headers.toString()}\n');
     // TokenStorage().deleteAllTokens();
-    // options.headers['Authorization'] =
-    //     "Bearer ${TokenStorage().getAccessToken()}";
+    if (options.path != '/api/v1/account/login' &&
+        options.path != '/api/v1/account/register') {
+      String? accesstoken = await TokenStorage().getAccessToken();
+      options.headers['Authorization'] = "Bearer ${accesstoken}";
+    }
+    ;
     buffer.write('| - Token:     ${options.headers['Authorization']}\n');
     final data = options.data;
     if (data != null) {
