@@ -4,14 +4,17 @@ import 'package:know_ai_app/model/user.dart';
 
 class UserController extends GetxController {
   User getUserInformation() {
-    late User user;
     Future<Map<String, dynamic>> data = UserInformation().userInformation();
     data.then((value) {
+      if (value['code'] == 403) {
+        print("-=-=-=-==-=-=-=-=-=-=$value");
+        return User(name: '', email: '');
+      }
       String name = value['name'];
       String email = value['email'];
 
-      user = User(name: name, email: email);
+      return User(name: name, email: email);
     });
-    return user;
+    return User(name: '', email: '');
   }
 }
