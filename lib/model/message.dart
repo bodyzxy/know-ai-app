@@ -1,4 +1,3 @@
-import 'package:dart_openai/dart_openai.dart';
 import 'package:hive/hive.dart';
 
 // part 'message.g.dart';
@@ -10,12 +9,16 @@ class Message {
   String content;
   // 角色
   @HiveField(1)
-  OpenAIChatMessageRole role;
+  String role;
   // historyMessageID
   @HiveField(2)
   String historyId;
 
   Message({required this.content, required this.role, required this.historyId});
+
+  Message.name(this.content, this.role, this.historyId);
+
+
 
   @override
   String toString() {

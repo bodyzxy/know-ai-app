@@ -9,12 +9,12 @@ class TokenStorage {
     await _storage.write(key: 'refreshToken', value: refreshToken);
   }
 
-  Future<String?> getAccessToken() async {
-    return await _storage.read(key: 'accessToken');
+  Future<String> getAccessToken() async {
+    return await _storage.read(key: 'accessToken')??"";
   }
 
-  Future<String?> getRefreshToken() async {
-    return await _storage.read(key: 'refreshToken');
+  Future<String> getRefreshToken() async {
+    return await _storage.read(key: 'refreshToken')??"";
   }
 
   Future<void> deleteAllTokens() async {

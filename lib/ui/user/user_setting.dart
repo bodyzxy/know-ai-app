@@ -7,6 +7,7 @@ import 'package:know_ai_app/component/build_app_bar.dart';
 import 'package:know_ai_app/component/button_widget.dart';
 import 'package:know_ai_app/component/profile_widget.dart';
 import 'package:know_ai_app/component/textfile.dart';
+import 'package:know_ai_app/model/preference/user_preferences.dart';
 import 'package:know_ai_app/controller/user/user_controller.dart';
 import 'package:know_ai_app/model/user.dart';
 import 'package:know_ai_app/storage/token_storage.dart';

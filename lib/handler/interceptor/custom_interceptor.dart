@@ -19,8 +19,8 @@ class CustomInterceptor extends Interceptor {
     // TokenStorage().deleteAllTokens();
     if (options.path != '/api/v1/account/login' &&
         options.path != '/api/v1/account/register') {
-      String? accesstoken = await TokenStorage().getAccessToken();
-      options.headers['Authorization'] = "Bearer ${accesstoken}";
+      String accessToken = await TokenStorage().getAccessToken();
+      options.headers['Authorization'] = "Bearer ${accessToken}";
     }
     ;
     buffer.write('| - Token:     ${options.headers['Authorization']}\n');
