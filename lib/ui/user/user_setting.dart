@@ -1,16 +1,13 @@
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
-import 'package:get/get_utils/get_utils.dart';
-import 'package:know_ai_app/component/build_app_bar.dart';
+import 'package:get/get.dart';
 import 'package:know_ai_app/component/button_widget.dart';
 import 'package:know_ai_app/component/profile_widget.dart';
 import 'package:know_ai_app/component/textfile.dart';
-import 'package:know_ai_app/model/preference/user_preferences.dart';
-import 'package:know_ai_app/controller/user/user_controller.dart';
-import 'package:know_ai_app/model/user.dart';
+import 'package:know_ai_app/controller/user_controller.dart';
 import 'package:know_ai_app/storage/token_storage.dart';
+
+import '../../constant/constant.dart';
 
 class UserSetting extends StatefulWidget {
   const UserSetting({super.key});
@@ -20,11 +17,18 @@ class UserSetting extends StatefulWidget {
 }
 
 class _UserSettingState extends State<UserSetting> {
-  User user = UserController().getUserInformation();
+  final _userController = Get.find<UserController>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppBar(context),
+      appBar:AppBar(
+        backgroundColor: kPrimaryColor,
+        title: const Text(
+          "设置中心",
+          style: TextStyle(fontSize: 24, fontWeight: FontWeight.w600),
+        ),
+        centerTitle: true,
+      ),
       body: ListView(
         padding: const EdgeInsets.symmetric(horizontal: 32),
         physics: const BouncingScrollPhysics(),
@@ -37,14 +41,14 @@ class _UserSettingState extends State<UserSetting> {
           const SizedBox(height: 24),
           TextFieldWidget(
             label: 'user.name'.tr,
-            text: user.name,
+            text: _userController.getCurrUser().name,
             enabled: false,
             onChanged: (name) {},
           ),
           const SizedBox(height: 24),
           TextFieldWidget(
             label: 'email'.tr,
-            text: user.email,
+            text: _userController.getCurrUser().email,
             enabled: false,
             onChanged: (email) {
               setState(() {
@@ -64,7 +68,7 @@ class _UserSettingState extends State<UserSetting> {
   Widget buildUpgradeButton() => ButtonWidget(
         text: '保存',
         onClicked: () {
-          if (user.name != null) {
+          if (_userController.getCurrUser().name != null) {
             Get.back();
           } else {
             Get.defaultDialog(

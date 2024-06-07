@@ -14,7 +14,6 @@ class ChatSSEService {
   Future<void> chat(ValueChanged recall, List<Message> messages, ChatOptions options,
       String prompt) async {
     String accessToken = await TokenStorage().getAccessToken();
-    log("$accessToken <<<<");
     SSEClient.subscribeToSSE(
         method: SSERequestType.POST,
         url: "http://45.32.33.60:8818/api/v1/chat/stream",
@@ -28,8 +27,9 @@ class ChatSSEService {
           "chatOptions": options.toJson(),
           "prompt": prompt
         }).listen((event) {
+
       Map<String,dynamic> mp = json.decode(event.data!);
-      log(mp['result']);
+      // log("${event.data}");
       recall(mp['result']);
     });
   }

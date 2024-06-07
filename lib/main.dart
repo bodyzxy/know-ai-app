@@ -11,6 +11,7 @@ import 'package:know_ai_app/storage/token_storage.dart';
 import 'config/router/router.dart';
 import 'constant/constant.dart';
 import 'controller/chat.dart';
+import 'controller/user_controller.dart';
 
 void main() async {
   await Hive.initFlutter();
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
 
     Get.lazyPut(() => ChatPageController());
+    Get.lazyPut(() => UserController());
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
