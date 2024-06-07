@@ -43,6 +43,7 @@ Future<String> getInitRoute() async {
       user = UserController().getUserInformation();
       // todo: 5. 请求成功 重置accessToken 返回"/home"
       if (user.name.isEmpty && user.email.isEmpty) {
+        await TokenStorage().deleteAllTokens();
         // todo: 6. 请求失败 返回"/"
         return "/";
       }
