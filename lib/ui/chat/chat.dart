@@ -1,9 +1,12 @@
+import 'dart:developer';
+
 import 'package:dart_openai/dart_openai.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:know_ai_app/manager/asset_manager.dart';
+import 'package:know_ai_app/model/dto/chat.dart';
 import 'package:know_ai_app/service/chat_service.dart';
 
 import '../../component/md_code_highlight_math.dart';
@@ -45,7 +48,7 @@ class _ChatPageState extends State<ChatPage> {
               _chatController.currHistoryMessage.messages[index];
               return Column(
                 crossAxisAlignment:
-                OpenAIChatMessageRole.user == currMessage.role
+                OpenAIChatMessageRole.user.name == currMessage.role
                     ? CrossAxisAlignment.end
                     : CrossAxisAlignment.start,
                 children: [
@@ -54,12 +57,12 @@ class _ChatPageState extends State<ChatPage> {
                         left: 10, right: 10, top: 10),
                     child: Row(
                       mainAxisAlignment:
-                      OpenAIChatMessageRole.user == currMessage.role
+                      OpenAIChatMessageRole.user.name == currMessage.role
                           ? MainAxisAlignment.end
                           : MainAxisAlignment.start,
                       children: [
                         SvgPicture.asset(
-                          OpenAIChatMessageRole.user == currMessage.role
+                          OpenAIChatMessageRole.user.name == currMessage.role
                               ? AssetManager.userIcon
                               : AssetManager.robotIcon,
                           width: 30,
@@ -79,7 +82,7 @@ class _ChatPageState extends State<ChatPage> {
                   ),
                   Row(
                     mainAxisAlignment:
-                    OpenAIChatMessageRole.user == currMessage.role
+                    OpenAIChatMessageRole.user.name  == currMessage.role
                         ? MainAxisAlignment.end
                         : MainAxisAlignment.start,
                     children: [
@@ -153,6 +156,11 @@ class _ChatPageState extends State<ChatPage> {
         content: "",
         role: "assistant",
         historyId: _chatController.currHistoryMessage.id));
+
+    var options = ChatOptions("gpt-3.5-turbo", 10, ChatType.SIMPLE, 0.9);
+    _chatService.chat((resp) {
+      log(resp);
+    }, _chatController.currHistoryMessage.messages, options, prompt);
   }
 
 }

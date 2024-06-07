@@ -23,5 +23,14 @@ class ChatOptions {
   String toString() {
     return 'ChatOptions{model: $model, maxHistoryLength: $maxHistoryLength, chatType: $chatType, temperature: $temperature}';
   }
+
+  Map<String, dynamic> toJson() {
+    return {
+      'model': model,
+      'maxHistoryLength': maxHistoryLength,
+      "chatType": chatType.name.toLowerCase(),
+      "temperature": temperature
+    };
+  }
 }
 

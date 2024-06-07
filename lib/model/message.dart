@@ -1,6 +1,4 @@
-import 'package:dart_openai/dart_openai.dart';
 import 'package:hive/hive.dart';
-import 'package:know_ai_app/model/dto/chat.dart';
 
 // part 'message.g.dart';
 // 会话信息
@@ -17,6 +15,10 @@ class Message {
   String historyId;
 
   Message({required this.content, required this.role, required this.historyId});
+
+  Message.name(this.content, this.role, this.historyId);
+
+
 
   @override
   String toString() {

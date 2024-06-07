@@ -13,8 +13,8 @@ class ChatSSEService {
 
   Future<void> chat(ValueChanged recall, List<Message> messages, ChatOptions options,
       String prompt) async {
-    String? accessToken = await TokenStorage().getAccessToken();
-
+    String accessToken = await TokenStorage().getAccessToken();
+    log("$accessToken <<<<");
     SSEClient.subscribeToSSE(
         method: SSERequestType.POST,
         url: "http://45.32.33.60:8818/api/v1/chat/stream",
@@ -24,8 +24,8 @@ class ChatSSEService {
           "Authorization": "Bearer $accessToken"
         },
         body: {
-          "messages": messages,
-          "chatOptions": options,
+          "messages": [],
+          "chatOptions": options.toJson(),
           "prompt": prompt
         }).listen((event) {
       Map<String,dynamic> mp = json.decode(event.data!);

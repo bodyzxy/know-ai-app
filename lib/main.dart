@@ -6,7 +6,6 @@ import 'package:hive_flutter/hive_flutter.dart';
 import 'package:know_ai_app/manager/localization.dart';
 import 'package:know_ai_app/model/hive_box.dart';
 import 'package:know_ai_app/model/message.dart';
-import 'package:know_ai_app/model/response/message.g.dart';
 import 'package:know_ai_app/storage/token_storage.dart';
 
 import 'config/router/router.dart';
@@ -15,8 +14,8 @@ import 'controller/chat.dart';
 
 void main() async {
   await Hive.initFlutter();
-  Hive.registerAdapter<Message>(MessageAdapter());
-  Hive.registerAdapter<HistoryMessage>(HistoryMessageAdapter());
+  // Hive.registerAdapter<Message>(MessageAdapter());
+  // Hive.registerAdapter<HistoryMessage>(HistoryMessageAdapter());
   await Hive.openBox<HistoryMessage>(historyBox);
   await Hive.openBox<Message>(settingBox);
 
