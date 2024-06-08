@@ -25,6 +25,11 @@ class _UserDetailsState extends State<UserDetails> {
 
   @override
   Widget build(BuildContext context) {
+
+    if(_userController.isRead.value){
+      _userController.getUserInformation();
+    }
+
     return Scaffold(
         appBar: AppBar(
           backgroundColor: kPrimaryColor,

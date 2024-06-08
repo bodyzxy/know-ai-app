@@ -34,7 +34,6 @@ Future<void> init() async {
   Get.lazyPut(() => ChatPageController());
   Get.lazyPut(() => UserController());
   Get.lazyPut(() => TokenController());
-
 }
 
 Future<String> getInitRoute() async {
@@ -42,6 +41,8 @@ Future<String> getInitRoute() async {
   var tokenController = Get.find<TokenController>();
   var tokenStorage = TokenStorage();
   var tokenApi = TokenAPi();
+
+  await tokenStorage.deleteAllTokens();
 
   // 1. 判断本地accessToken是否存在
   String accessToken = await tokenStorage.getAccessToken();

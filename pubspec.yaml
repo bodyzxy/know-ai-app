@@ -43,6 +43,8 @@ dependencies:
   adaptive_theme: ^3.6.0
   http: ^1.2.1
   flutter_client_sse: ^2.0.1
+  #文件管理
+  file_picker: ^8.0.3
 
 
   # The following adds the Cupertino Icons font to your application.
