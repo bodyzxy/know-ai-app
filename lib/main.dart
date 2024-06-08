@@ -1,9 +1,8 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:know_ai_app/api/token_refresh.dart';
+import 'package:know_ai_app/controller/draw_controller.dart';
 import 'package:know_ai_app/controller/token_controller.dart';
 import 'package:know_ai_app/manager/localization.dart';
 import 'package:know_ai_app/model/hive_box.dart';
@@ -23,17 +22,16 @@ void main() async {
 
   String initPath = await getInitRoute();
 
-
   runApp(MyApp(
     initPath: initPath,
   ));
 }
 
-
 Future<void> init() async {
   Get.lazyPut(() => ChatPageController());
   Get.lazyPut(() => UserController());
   Get.lazyPut(() => TokenController());
+  Get.lazyPut(() => DrawController());
 }
 
 Future<String> getInitRoute() async {
@@ -73,9 +71,6 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
-
-
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'Flutter Auth',

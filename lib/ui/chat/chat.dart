@@ -128,7 +128,10 @@ class _ChatPageState extends State<ChatPage> {
                         titleStyle: const TextStyle(color: Colors.red),
                         content: Column(
                           children: [
-                            const Text("确定清空所有聊天记录?",style: TextStyle(fontSize: 18),),
+                            const Text(
+                              "确定清空所有聊天记录?",
+                              style: TextStyle(fontSize: 18),
+                            ),
                             Row(
                               mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
@@ -138,16 +141,19 @@ class _ChatPageState extends State<ChatPage> {
                                     },
                                     child: Container(
                                       padding: const EdgeInsets.all(10),
-                                      margin: const EdgeInsets.only(left: 15,top: 5,bottom: 5,right: 15),
-
+                                      margin: const EdgeInsets.only(
+                                          left: 15,
+                                          top: 5,
+                                          bottom: 5,
+                                          right: 15),
                                       decoration: BoxDecoration(
                                           color: Colors.cyan,
-                                          borderRadius: BorderRadius.circular(15)
-                                      ),
-                                      child: const Text(
-                                          "取消",
-                                          style: TextStyle(fontSize: 16,color: Colors.white)
-                                      ),
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
+                                      child: const Text("取消",
+                                          style: TextStyle(
+                                              fontSize: 16,
+                                              color: Colors.white)),
                                     )),
                                 TextButton(
                                     onPressed: () {
@@ -157,10 +163,14 @@ class _ChatPageState extends State<ChatPage> {
                                     child: Container(
                                       decoration: BoxDecoration(
                                           color: const Color(0xff4691a8),
-                                          borderRadius: BorderRadius.circular(15)),
+                                          borderRadius:
+                                              BorderRadius.circular(15)),
                                       padding: const EdgeInsets.all(10),
-                                      margin: const EdgeInsets.only(left: 15,top: 5,bottom: 5,right: 15),
-
+                                      margin: const EdgeInsets.only(
+                                          left: 15,
+                                          top: 5,
+                                          bottom: 5,
+                                          right: 15),
                                       child: const Text(
                                         "确定",
                                         style: TextStyle(
@@ -170,8 +180,7 @@ class _ChatPageState extends State<ChatPage> {
                               ],
                             )
                           ],
-                        )
-                    );
+                        ));
                   },
                   child: const Icon(
                     Icons.cleaning_services_rounded,
