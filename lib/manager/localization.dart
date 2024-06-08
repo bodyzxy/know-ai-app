@@ -20,7 +20,9 @@ class Localization extends Translations {
           'user.name': 'Full Name',
           'name.error': 'Name is empty',
           'draw': 'draw',
-          'input': 'input'
+          'input': 'input',
+          'send': 'send',
+          'uploadFile': 'upload file'
         },
         'zh': {
           'signUpButton': '注册',
@@ -38,7 +40,9 @@ class Localization extends Translations {
           'user.name': '用户名',
           'name.error': '姓名为空',
           'draw': '绘画',
-          'input': '输入'
+          'input': '输入',
+          'send': '发送',
+          'uploadFile': '上传文件'
         }
       };
 }
