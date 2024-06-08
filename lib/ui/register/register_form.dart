@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:know_ai_app/api/user.dart';
 import 'package:know_ai_app/constant/constant.dart';
 import 'package:know_ai_app/component/account_check.dart';
-import 'package:know_ai_app/controller/http_controller.dart';
 
 class RegisterForm extends StatefulWidget {
   const RegisterForm({super.key});
@@ -80,8 +80,8 @@ class _RegisterFormState extends State<RegisterForm> {
                   'password': _passwordController.text,
                   'confirmPassword': _confirmPasswordController.text
                 };
-                Future<String?> mes = HttpController()
-                    .registerRequest(jsonData.cast<String, dynamic>());
+                Future<String?> mes = UserApi()
+                    .register(jsonData.cast<String, dynamic>());
                 mes.then((String? value) {
                   if (value != null && value == "账户注册成功，请前往邮箱进行激活") {
                     Get.defaultDialog(

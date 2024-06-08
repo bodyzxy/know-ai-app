@@ -1,11 +1,13 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:get/utils.dart';
+import 'package:know_ai_app/api/user.dart';
 
 import 'package:know_ai_app/constant/constant.dart';
 
 import 'package:know_ai_app/component/account_check.dart';
-import 'package:know_ai_app/controller/http_controller.dart';
 import 'package:know_ai_app/storage/token_storage.dart';
 
 class LoginForm extends StatefulWidget {
@@ -58,7 +60,7 @@ class _LoginFormState extends State<LoginForm> {
           ),
           const SizedBox(height: defaultPadding),
           ElevatedButton(
-            onPressed: () {
+            onPressed: () async {
               //验证表单
               if (_formKey.currentState!.validate()) {
                 //提交表单
@@ -68,25 +70,16 @@ class _LoginFormState extends State<LoginForm> {
                   'email': _emailController.text,
                   'password': _passwordController.text
                 };
-                Future<Map<String, dynamic>> data = HttpController()
-                    .loginRequest(jsonData.cast<String, dynamic>());
-                data.then((value) {
-                  if (value['code'] == 0) {
-                    Future<String?> token = TokenStorage().getAccessToken();
-                    token.then((String? value1) {
-                      if (value1 != null) {
-                        Get.offAllNamed("/home");
-                      } else {
-                        Get.offAllNamed("/login");
-                      }
-                    });
-                  } else {
-                    Get.defaultDialog(
-                        title: 'login.error'.tr,
-                        content: Text(value['message']!));
-                    Get.offAllNamed("/login");
-                  }
-                });
+
+                Map<String, dynamic> rsp = await UserApi().login(jsonData.cast<String,dynamic>());
+                if (rsp['code'] == 0) {
+                  Get.offAllNamed("/home");
+                } else {
+                  Get.defaultDialog(
+                      title: 'login.error'.tr,
+                      content: Text(rsp['message']));
+                  Get.offAllNamed("/login");
+                }
               }
             },
             child: Text(

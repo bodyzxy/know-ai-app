@@ -4,9 +4,19 @@ import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 class TokenStorage {
   final _storage = const FlutterSecureStorage();
 
-  Future<void> storeToken(String accessToken, String refreshToken) async {
-    await _storage.write(key: 'accessToken', value: accessToken);
-    await _storage.write(key: 'refreshToken', value: refreshToken);
+  Future<void> setAccessToken(String token) async {
+    await _storage.delete(key: "accessToken");
+    await _storage.write(key: "accessToken", value: token);
+  }
+
+  Future<void> setRefreshToken(String token) async {
+    await _storage.delete(key: "refreshToken");
+    await _storage.write(key: "refreshToken", value: token);
+  }
+
+
+  Future<void> updateAccessToken(String token) async {
+      await _storage.write(key: "accessToken", value: token);
   }
 
   Future<String> getAccessToken() async {
