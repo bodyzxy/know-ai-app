@@ -9,4 +9,9 @@ class AuthenticationResponse {
     return AuthenticationResponse(
         accessToken: json['accessToken'], refreshToken: json['refreshToken']);
   }
+
+  @override
+  String toString() {
+    return 'AuthenticationResponse{accessToken: $accessToken, refreshToken: $refreshToken}';
+  }
 }

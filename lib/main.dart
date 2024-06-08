@@ -1,55 +1,71 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
-import 'package:get/get_navigation/get_navigation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
+import 'package:know_ai_app/api/token_refresh.dart';
+import 'package:know_ai_app/controller/token_controller.dart';
 import 'package:know_ai_app/manager/localization.dart';
 import 'package:know_ai_app/model/hive_box.dart';
 import 'package:know_ai_app/model/message.dart';
 import 'package:know_ai_app/storage/token_storage.dart';
 
-import 'config/router/router.dart';
+import 'config/router.dart';
 import 'constant/constant.dart';
 import 'controller/chat.dart';
 import 'controller/user_controller.dart';
 
 void main() async {
   await Hive.initFlutter();
-  // Hive.registerAdapter<Message>(MessageAdapter());
-  // Hive.registerAdapter<HistoryMessage>(HistoryMessageAdapter());
   await Hive.openBox<HistoryMessage>(historyBox);
   await Hive.openBox<Message>(settingBox);
+  await init();
 
   String initPath = await getInitRoute();
 
-  runApp(MyApp(initPath: initPath,));
+
+  runApp(MyApp(
+    initPath: initPath,
+  ));
 }
 
+
+Future<void> init() async {
+  Get.lazyPut(() => ChatPageController());
+  Get.lazyPut(() => UserController());
+  Get.lazyPut(() => TokenController());
+
+}
 
 Future<String> getInitRoute() async {
+  var userController = Get.find<UserController>();
+  var tokenController = Get.find<TokenController>();
+  var tokenStorage = TokenStorage();
+  var tokenApi = TokenAPi();
 
-  // todo: 1. 判断本地accessToken是否存在
-  String token = await TokenStorage().getAccessToken();
+  // 1. 判断本地accessToken是否存在
+  String accessToken = await tokenStorage.getAccessToken();
   // 如果本地没有存储accessToken 则说明首次登录
-  if(token.isEmpty){
+  if (accessToken.isEmpty) {
     return "/";
+  } else {
+    // 2. 如果存在，使用accessToken请求用户信息
+    var user = await userController.getUserInformation();
+    if (user.name.isEmpty) {
+      // todo: 4. 请求失败 使用refreshToken请求新的accessToken
+      // 获取新的accessToken 如果响应403 会自动跳转到“/”路由 因此不需要在这里做判断
+      String accessToken = await tokenApi.getAccessToken();
+      tokenStorage.setAccessToken(accessToken);
+      // todo: 5. 请求成功 重置accessToken 返回"/home"
+      user = await userController.getUserInformation();
+      return "/home";
+    }
+    // todo: 3. 请求成功 返回 "/home"
+    return "/home";
   }
-  // todo: 2. 如果存在，使用accessToken请求用户信息
-  return "/home";
-  // todo: 3. 请求成功 返回 "/home"
-
-  // todo: 4. 请求失败 使用refreshToken请求新的accessToken
-
-  // todo: 5. 请求成功 重置accessToken 返回"/home"
-
-  // todo: 6. 请求失败 返回"/"
 }
 
-
-
-
 class MyApp extends StatelessWidget {
-
   late String initPath;
 
   MyApp({super.key, required this.initPath});
@@ -57,8 +73,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
 
-    Get.lazyPut(() => ChatPageController());
-    Get.lazyPut(() => UserController());
+
 
     return GetMaterialApp(
       debugShowCheckedModeBanner: false,
@@ -95,5 +110,4 @@ class MyApp extends StatelessWidget {
       // home: const DrawPage(),
     );
   }
-
 }
