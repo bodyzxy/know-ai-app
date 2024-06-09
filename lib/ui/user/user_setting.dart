@@ -21,7 +21,7 @@ class _UserSettingState extends State<UserSetting> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar:AppBar(
+      appBar: AppBar(
         backgroundColor: kPrimaryColor,
         title: const Text(
           "设置中心",
@@ -68,7 +68,7 @@ class _UserSettingState extends State<UserSetting> {
   Widget buildUpgradeButton() => ButtonWidget(
         text: '保存',
         onClicked: () {
-          if (_userController.getCurrUser().name != null) {
+          if (_userController.getCurrUser().name.isNotEmpty) {
             Get.back();
           } else {
             Get.defaultDialog(

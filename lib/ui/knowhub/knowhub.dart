@@ -24,9 +24,8 @@ class _KnowHubPageState extends State<KnowHubPage> {
 
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
-    this._getData();
+    _getData();
 
     //监听滚动事件
     _scrollController.addListener(() {
@@ -36,7 +35,7 @@ class _KnowHubPageState extends State<KnowHubPage> {
 
       if (_scrollController.position.pixels >
           _scrollController.position.maxScrollExtent - 40) {
-        this._getData();
+        _getData();
       }
     });
   }
