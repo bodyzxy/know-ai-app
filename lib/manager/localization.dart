@@ -22,7 +22,8 @@ class Localization extends Translations {
           'draw': 'draw',
           'input': 'input',
           'send': 'send',
-          'uploadFile': 'upload file'
+          'uploadFile': 'upload file',
+          'success': 'success'
         },
         'zh': {
           'signUpButton': '注册',
@@ -42,7 +43,8 @@ class Localization extends Translations {
           'draw': '绘画',
           'input': '输入',
           'send': '发送',
-          'uploadFile': '上传文件'
+          'uploadFile': '上传文件',
+          'success': '成功'
         }
       };
 }

@@ -55,7 +55,7 @@ class _DrawPageState extends State<DrawPage> {
                 }
               }
             },
-            child: const Text('发送'),
+            child: const Text('绘制'),
           ),
           const SizedBox(height: 24),
           Card(
