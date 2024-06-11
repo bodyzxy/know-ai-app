@@ -12,41 +12,38 @@ class UserApi {
   var tokenApi = TokenAPi();
 
   Future<Map<String, dynamic>?> getUserInfo() async {
-
     var accessToken = await tokenStorage.getAccessToken();
-    var dio = CustomizeDio.instance.getDio(token:accessToken);
+    var dio = CustomizeDio.instance.getDio(token: accessToken);
 
     try {
       var rsp = await dio.get(ApiUrl.userInfo);
       return rsp.data['data'];
-    } on DioException catch(e){
+    } on DioException catch (e) {
       return null;
     }
   }
 
-  Future<Map<String,dynamic>> login(Map<String,dynamic> jsonData) async {
+  Future<Map<String, dynamic>> login(Map<String, dynamic> jsonData) async {
     var dio = CustomizeDio.instance.getDio();
     try {
-      var rsp = await dio.post(ApiUrl.login,data: jsonData);
-      if(rsp.data['data'] != null){
+      var rsp = await dio.post(ApiUrl.login, data: jsonData);
+      if (rsp.data['data'] != null) {
         var authTokens = AuthenticationResponse.fromJson(rsp.data['data']);
         tokenStorage.setAccessToken(authTokens.accessToken);
         tokenStorage.setRefreshToken(authTokens.refreshToken);
       }
       return rsp.data;
-    }catch(e){
-      return {
-        "code": "4001",
-        "message": e.toString(),
-        "data": e.toString()
-      };
+    } catch (e) {
+      return {"code": "4001", "message": e.toString(), "data": e.toString()};
     }
   }
 
-  Future<String> register(Map<String,dynamic> jsonData) async {
+  Future<String> register(Map<String, dynamic> jsonData) async {
     var dio = CustomizeDio.instance.getDio();
-    var rsp = await dio.post(ApiUrl.register,data: jsonData);
+    print("-=----------------$jsonData");
+    var rsp = await dio.post(ApiUrl.register, data: jsonData);
     log(rsp.toString());
+    print("=-=-=-=-=--=-=$rsp");
     return rsp.data['data'];
   }
 }

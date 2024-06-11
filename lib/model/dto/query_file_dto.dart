@@ -16,7 +16,7 @@ class QueryFileDto {
     if (page != null) formData.fields.add(MapEntry('page', page.toString()));
     if (pageSize != null)
       formData.fields.add(MapEntry('pageSize', pageSize.toString()));
-    if (fileName != null) formData.fields.add(const MapEntry('fileName', ""));
+    if (fileName == null) formData.fields.add(const MapEntry('fileName', ""));
     return formData;
   }
 }

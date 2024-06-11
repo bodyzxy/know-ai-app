@@ -80,8 +80,8 @@ class _RegisterFormState extends State<RegisterForm> {
                   'password': _passwordController.text,
                   'confirmPassword': _confirmPasswordController.text
                 };
-                Future<String?> mes = UserApi()
-                    .register(jsonData.cast<String, dynamic>());
+                Future<String?> mes =
+                    UserApi().register(jsonData.cast<String, dynamic>());
                 mes.then((String? value) {
                   if (value != null && value == "账户注册成功，请前往邮箱进行激活") {
                     Get.defaultDialog(

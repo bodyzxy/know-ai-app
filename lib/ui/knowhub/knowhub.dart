@@ -1,3 +1,4 @@
+import 'package:dio/src/form_data.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:know_ai_app/api/file.dart';
@@ -14,10 +15,9 @@ class KnowHubPage extends StatefulWidget {
 }
 
 class _KnowHubPageState extends State<KnowHubPage> {
-  List<Map<String, dynamic>> _list = [];
-  int _page = 0;
+  final List<dynamic> _list = [];
   bool hasMore = true;
-  ScrollController _scrollController = new ScrollController();
+  final ScrollController _scrollController = ScrollController();
   var tokenStorage = TokenStorage();
   QueryFileDto queryFileDto =
       QueryFileDto(userId: 1, page: 0, pageSize: 4, fileName: "");
@@ -25,6 +25,7 @@ class _KnowHubPageState extends State<KnowHubPage> {
   @override
   void initState() {
     super.initState();
+
     _getData();
 
     //监听滚动事件
@@ -45,11 +46,12 @@ class _KnowHubPageState extends State<KnowHubPage> {
     var dio = CustomizeDio.instance.getDio(token: accessToken);
 
     try {
-      var rsp = await dio.get('/api/v1/know/contents', data: queryFileDto);
+      var rsp = await dio.get('/api/v1/know/contents',
+          data: queryFileDto.toFormData());
+      print("================${rsp.data['data']['content']}");
       if (rsp.data['code'] == 0 && rsp.data['data']['content'] != null) {
         setState(() {
           _list.addAll(rsp.data['data']['content']);
-          _page++;
         });
       }
     } catch (e) {
